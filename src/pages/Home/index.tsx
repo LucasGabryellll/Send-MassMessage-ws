@@ -18,7 +18,7 @@ export function Home() {
   return (
     <>
       <Header />
-      <div className="container mx-auto flex items-center justify-center">
+      <div className="flex justify-center">
         <div className="flex flex-col">
           <button onClick={navigateToImage} className="btn btn-sm mb-10">
             ENVIAR COM IMAGENS

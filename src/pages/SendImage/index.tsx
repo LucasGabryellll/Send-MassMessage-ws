@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import api from '../../service/api';
+import api from '../../services/api';
 
 import { Header } from '../../components/Nav';
-import { ButtonGroup } from '../../components/ButtonGroup';
-import { Loading } from '../../components/Loading';
 
-import logo from '../../assets/NZBX2.png';
+import changeImage from '../../assets/replace.png';
+import { Form } from '../../components/Form';
 
 export function SendImage() {
   const [message, setMessage] = useState("");
@@ -14,13 +13,14 @@ export function SendImage() {
   const [isGroup, setIsGroup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [fileUpload, setFileUpload] = useState<any>([]);
-  const [preview, setPreview] = useState<any>(null);
+  const [preview, setPreview] = useState<any>(changeImage);
 
   let formData = new FormData();
 
-  formData.append("file", fileUpload);
+  formData?.append("file", fileUpload);
 
   const handleStart = async () => {
+
     try {
       setIsLoading(true);
 
@@ -55,104 +55,78 @@ export function SendImage() {
     }
   }
 
-  const listButtons = [
-    {
-      id: 1,
-      descriptionButton: "Enviar para Grupos",
-      isGroup: true
-    },
-    {
-      id: 2,
-      descriptionButton: "Enviar para Contatos",
-      isGroup: false
+  const imgPreviewConvert = (e: any) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader?.readyState === 2) {
+        setPreview(reader?.result);
+      }
     }
-  ]
 
-  useEffect(() => {
-    const fileReader = new FileReader;
+    reader.readAsDataURL(e?.target?.files?.[0])
+  }
 
-    //fileReader.readAsDataURL(fileUpload);
-
-  }, [fileUpload]);
+  const removeUplod = () => {
+    if (preview === changeImage) {
+      return false;
+    } else {
+      setFileUpload([]);
+      setPreview(changeImage);
+    }
+  }
 
   return (
     <>
       <Header />
 
-      <div className='relative flex justify-center flex-col items-center pl-25'>
-
-        <h1 className='font-extrabold text-transparent 
-        bg-clip-text bg-gradient-to-r text-3xl
-      from-purple-400 to-cyan-400 mb-10'>CONFIGURE SUA MENSAGEM</h1>
-
-        <div className='flex flex-col' key={1}>
-          <div className='flex flex-row justify-center items-center justify-between mb-10'>
-            <div className='flex relative w-[50%] h-36 rounded-[15px] mr-4 justify-center items-center'>
+      <Form
+        handleStart={handleStart}
+        interval={interval}
+        isGroup={isGroup}
+        isLoading={isLoading}
+        message={message}
+        setInterval={setInterval}
+        setIsGroup={setIsGroup}
+        setMessage={setMessage}
+      >
+        <div className='flex flex-col xl:flex-row items-center xl:justify-between mb-10'>
+          <div className='flex flex-rows w-full items-end'>
+            <div className='flex relative w-[100%] h-36'>
               <img
-                className='absolute w-36 h-36 rounded-[50%] bg-slate-600'
-                src={preview ? preview : ""}
-                alt="Image" />
+                className='absolute w-36 h-36 border-[2px] border-cyan-500 rounded-[15px] shadow-lg shadow-black'
+                src={preview}
+                alt="Preview" />
             </div>
 
-            <div className='flex flex-col text-gray-800 mb-6'>
-              <label >Escolha uma imagem para enviar</label>
-              <input
-                className='text-black'
-                type="file"
-                id="avatar"
-                name="avatar"
-                accept="image/png, image/jpeg"
-
-                onChange={(e) => setFileUpload(e?.target?.files?.[0])}
+            {fileUpload.length !== 0 &&
+              <div
+                onClick={removeUplod}
+                className='text-red-600 cursor-pointer font-bold sm:ml-[-70%] md:ml-[-60%] lg:ml-[-40%]'
               >
-              </input>
-            </div>
+                Remover
+              </div>
+            }
           </div>
 
-          <h1 className='text-black font-bold'>ENVIAR MENSAGEM JUNTO COM A IMAGEM</h1>
-          <textarea
-            key={2}
-            className='text-zinc-600 pl-5 pr-2 border-2'
-            rows={5}
-            cols={60}
-            required
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          >
+          <div className='flex flex-col text-white mb-2 mt-5 md:[mb-6, mt-0] w-[100%]'>
+            <label >Escolha uma imagem para enviar</label>
+            <input
+              className='text-cyan-500 md:w-full mt-2'
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/png, image/jpeg"
 
-          </textarea>
-
-          <div className='mt-12 flex flex-row flex-1 justify-between'>
-            <div className=''>
-              <p className='font-extrabold text-transparent 
-        bg-clip-text bg-gradient-to-r
-        from-emerald-700 to-cyan-400'>Intervalo de envio:</p>
-              <input
-                key={3}
-                className='text-black border-2'
-                type={'number'}
-                value={interval}
-                onChange={(e) => setInterval(Number(e.target.value))}
-              />
-            </div>
-
-            <ButtonGroup
-              buttons={listButtons}
-              setIsGroup={setIsGroup}
-              isGroupProps={isGroup}
-            />
+              onChange={(e) => {
+                setFileUpload(e?.target?.files?.[0])
+                imgPreviewConvert(e)
+              }}
+            >
+            </input>
           </div>
         </div>
-
-        <button
-          onClick={handleStart}
-          type="submit"
-          className='btn btn-lg pl-20 pr-20 mt-12'
-          disabled={isLoading}
-        >
-          {isLoading ? <Loading /> : "INICIAR"}
-        </button>
-      </div>
+      </Form>
     </>
   );
 }
