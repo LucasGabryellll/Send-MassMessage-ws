@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export function Header() {
   return (
     <nav className='flex bg-black h-20 mb-5 flex-1'>
-      <div className="container flex items-center gap-24 justify-center text-white">
+      <div className="container flex items-center text-[12px] md:text-[18px] gap-6 md:gap-24 justify-center text-white">
         <Link
           className='hover:text-[#00FFFF] transition-all'
           to={'/'}>HOME</Link>
