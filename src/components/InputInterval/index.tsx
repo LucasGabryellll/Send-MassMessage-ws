@@ -1,7 +1,5 @@
 import React from "react";
 
-import { selectItems } from '../../utils/itemsInterval';
-
 type Props = {
   setInterval: React.Dispatch<React.SetStateAction<number>>
   intevalSelected: number;
