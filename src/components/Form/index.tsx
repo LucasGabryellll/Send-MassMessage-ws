@@ -3,6 +3,7 @@ import React from "react";
 import { InputInterval } from "../InputInterval";
 import { ButtonGroup } from "../ButtonGroup";
 import { ButtonSubmit } from "../ButtonSubmit";
+import { InputFilter } from "../InputFilter";
 
 type Props = {
   setData?: React.Dispatch<React.SetStateAction<boolean>>,
@@ -13,9 +14,11 @@ type Props = {
   setInterval: React.Dispatch<React.SetStateAction<number>>,
   setIsGroup: React.Dispatch<React.SetStateAction<boolean>>,
   isGroup: boolean,
-  handleStart: () => {},
+  handleStart: () => void,
   isLoading: boolean,
-  children?: React.ReactNode
+  children?: React.ReactNode,
+  setFilter: React.Dispatch<React.SetStateAction<string>>,
+  filter: string
 }
 
 export function Form({
@@ -29,13 +32,15 @@ export function Form({
   isGroup,
   handleStart,
   isLoading,
-  children
+  children,
+  filter,
+  setFilter
 }: Props) {
 
   return (
-    <div className='relative flex justify-center flex-col items-center'>
+    <div className='relative flex justify-center flex-col items-center mb-[15%]'>
       <div className='absolute ml-[50%] mt-[-28%]'>
-        
+
       </div>
       <h1 className='text-transparent 
         bg-clip-text bg-gradient-to-r
@@ -47,8 +52,8 @@ export function Form({
         className='flex flex-col 
           bg-slate-700 p-10 rounded-xl 
           shadow-lg shadow-black
-          md:w-[60%]
-          lg:w-[50%]
+          md:w-[50%]
+          lg:w-[40%]
           w-[90%]'
         key={1}
       >
@@ -56,7 +61,7 @@ export function Form({
         <p>MENSAGEM A SER ENVIADA:</p>
         <textarea
           key={2}
-          className='text-zinc-600 pl-5 pr-2 border-2 shadow-lg shadow-black rounded-md rows'
+          className='text-zinc-600 pl-5 pr-2 border-2 shadow-lg shadow-black rounded-md'
           required
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -64,16 +69,27 @@ export function Form({
 
         </textarea>
 
-        <div 
-        className='mt-12 flex flex-col 
+        <div
+          className='mt-12 flex flex-col 
         lg:flex-row
         flex-1 justify-between'>
-          <InputInterval intevalSelected={interval} setInterval={setInterval} />
+          <div className="flex flex-col 
+          2xl:flex-row xl:bg-slate-600 xl:shadow-lg xl:shadow-black 
+          xl:p-4 xl:items-center 2xl:bg-transparent 2xl:shadow-none 2xl:p-0
+          ">
+            <InputInterval intevalSelected={interval} setInterval={setInterval} />
+            <InputFilter setFilter={setFilter} filter={filter} />
+          </div>
 
-          <ButtonGroup
-            setIsGroup={setIsGroup}
-            isGroupProps={isGroup}
-          />
+          <div 
+          className="lg:flex xl:bg-slate-600 xl:shadow-lg xl:shadow-black 
+          lg:ml-[2%] lg:p-4 lg:items-center 2xl:shadow-none 
+          2xl:bg-transparent 2xl:p-0">
+            <ButtonGroup
+              setIsGroup={setIsGroup}
+              isGroupProps={isGroup}
+            />
+          </div>
         </div>
 
         <ButtonSubmit
