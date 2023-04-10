@@ -5,6 +5,7 @@ import api from '../../services/api';
 import { Header } from '../../components/Nav';
 
 import { Form } from '../../components/Form';
+import { Footer } from '../../components/Footer';
 
 export function SendContact() {
 
@@ -24,16 +25,26 @@ export function SendContact() {
         message: message,
         interval: interval,
         isGroup: isGroup,
-        filterGroup: filterGroup
+        filterGroup: filterGroup.toLocaleUpperCase()
       });
 
       setIsLoading(false);
       setData(true);
 
+      setMessage("");
+      setInterval(0);
+      setIsLoading(false);
+
       return data;
 
     } catch (error) {
-      console.log(error);
+      setMessage("");
+      setInterval(0);
+      setIsLoading(false);
+
+      alert("Error interno no Servidor!");
+
+      return () => { }
     }
   }
 
@@ -52,7 +63,12 @@ export function SendContact() {
         setInterval={setInterval}
         setIsGroup={setIsGroup}
         setMessage={setMessage}
+        setFilter={setFilterGroup}
+        filter={filterGroup}
       />
+
+      <Footer />
+
     </>
   );
 }

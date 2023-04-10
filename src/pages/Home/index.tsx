@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Header } from '../../components/Nav';
 import { useNavigate } from 'react-router-dom';
+import { Footer } from '../../components/Footer';
 
 export function Home() {
 
@@ -29,6 +30,8 @@ export function Home() {
           </button>
         </div>
       </div>
+
+      <Footer/>
     </>
   );
 }

@@ -6,6 +6,7 @@ import { Header } from '../../components/Nav';
 
 import changeImage from '../../assets/replace.png';
 import { Form } from '../../components/Form';
+import { Footer } from '../../components/Footer';
 
 export function SendImage() {
   const [message, setMessage] = useState("");
@@ -14,7 +15,8 @@ export function SendImage() {
   const [isLoading, setIsLoading] = useState(false);
   const [fileUpload, setFileUpload] = useState<any>([]);
   const [preview, setPreview] = useState<any>(changeImage);
-
+  const [filterGroup, setFilterGroup] = useState("");
+  
   let formData = new FormData();
 
   formData?.append("file", fileUpload);
@@ -36,7 +38,8 @@ export function SendImage() {
         message,
         interval,
         file,
-        isGroup
+        isGroup,
+        filter: filterGroup.toLocaleUpperCase(),
       });
 
       setIsLoading(false);
@@ -52,6 +55,9 @@ export function SendImage() {
       setIsLoading(false);
       setFileUpload([]);
       alert("Error interno no Servidor!");
+
+      return () => {}
+
     }
   }
 
@@ -89,6 +95,8 @@ export function SendImage() {
         setInterval={setInterval}
         setIsGroup={setIsGroup}
         setMessage={setMessage}
+        setFilter={setFilterGroup}
+        filter={filterGroup}
       >
         <div className='flex flex-col xl:flex-row items-center xl:justify-between mb-10'>
           <div className='flex flex-rows w-full items-end'>
@@ -127,6 +135,8 @@ export function SendImage() {
           </div>
         </div>
       </Form>
+
+      <Footer/>
     </>
   );
 }
