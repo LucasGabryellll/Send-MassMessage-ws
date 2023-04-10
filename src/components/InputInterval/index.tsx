@@ -13,11 +13,11 @@ export function InputInterval({ setInterval, intevalSelected }: Props) {
     <div>
       <p className='font-extrabold text-transparent 
         bg-clip-text bg-gradient-to-r
-        from-emerald-700 to-cyan-400'>Intervalo de envio:</p>
-      <div className="relative flex justify-between w-[100%] h-10 rounded-xl">
+        from-emerald-700 to-cyan-400'>Intervalo de envio (s):</p>
+    
         <input
           key={3}
-          className='text-black w-[100%] rounded-t-sm h-full pl-4 border-r-2'
+          className='text-black w-[100%] rounded-t-sm h-10 pl-4 border-r-2'
           type={'number'}
           min="0"
           value={intevalSelected}
@@ -43,7 +43,7 @@ export function InputInterval({ setInterval, intevalSelected }: Props) {
           </ul>
         </div>
           */}
-      </div>
+
     </div>
   );
 }
