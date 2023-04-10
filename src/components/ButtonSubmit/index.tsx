@@ -2,7 +2,7 @@ import React from "react";
 import { Loading } from "../Loading";
 
 type Props = {
-  onPress: () => {},
+  onPress: () => void
   isLoading: boolean,
 
   message: string,
@@ -26,15 +26,15 @@ export function ButtonSubmit({ onPress, isLoading = false, message, interval }: 
     }
 
     else {
-      return onPress();
+      onPress();
     }
   } 
 
   return (
     <button
       onClick={valitadedForm}
-      className='btn btn-lg pl-20 pr-20 mt-6 md:mt-10 mb-2'
-      disabled={isLoading || message === "" || interval > 0}
+      className='btn btn-lg pl-20 pr-20 mt-6 md:mt-10 mb-2 cursor-pointer'
+      disabled={isLoading || message === "" || interval < 0}
     >
       {isLoading ? <Loading /> : "INICIAR ENVIO"}
     </button>
