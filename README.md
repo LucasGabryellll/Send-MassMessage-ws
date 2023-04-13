@@ -6,7 +6,7 @@
  Otimo para enviar uma mensagem de aviso para grupos ou informativos para seus contatos.
  
 ## 💻 Versão Web:
-<div display="flex" flex-direction="row">
+<div align="center">
   <img alt="GitHub language count" src=https://github.com/LucasGabryellll/Send-MassMessage-ws/blob/main/imageProjeto/sendImage.png height="220px">
   <img alt="GitHub language count" src=https://github.com/LucasGabryellll/Send-MassMessage-ws/blob/main/imageProjeto/sendMessage.png height="220px">
 </div>
