@@ -78,7 +78,7 @@ export function Form({
           xl:p-4 xl:items-center 2xl:bg-transparent 2xl:shadow-none 2xl:p-0
           ">
             <InputInterval intevalSelected={interval} setInterval={setInterval} />
-            <InputFilter setFilter={setFilter} filter={filter} />
+            {isGroup && <InputFilter setFilter={setFilter} filter={filter} />}
           </div>
 
           <div 
@@ -101,5 +101,4 @@ export function Form({
       </div>
     </div>
   );
-
 }
