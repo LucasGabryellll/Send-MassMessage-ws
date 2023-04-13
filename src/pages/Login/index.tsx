@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, KeyboardEvent } from "react";
 
 import { useNavigate } from 'react-router-dom';
 
@@ -32,7 +32,7 @@ export default function Login() {
   const handleToogleEye = () => {
     toogleEye ? setToogleEye(false) : setToogleEye(true);
   }
-  
+
   return (
     <div
       className="flex items-center justify-center h-screen w-full
@@ -87,6 +87,7 @@ export default function Login() {
               placeholder="Digite sua senha..."
               value={password}
               onChange={(e) => setPassword(e?.target?.value)}
+              onKeyDown={(e: KeyboardEvent) => e.key === "Enter" ? handleLogin() : () => {}}
             />
 
             <img
@@ -101,6 +102,7 @@ export default function Login() {
         <button
           className='btn btn-lg rounded-[10px] pl-20 pr-20 mt-[20%] md:mt-10 mb-2'
           onClick={handleLogin}
+          onKeyUpCapture={(e: KeyboardEvent) => { console.log(e.key) }}
         >
           ENTRAR
         </button>

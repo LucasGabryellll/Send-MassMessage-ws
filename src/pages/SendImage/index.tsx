@@ -39,7 +39,7 @@ export function SendImage() {
         interval,
         file,
         isGroup,
-        filter: filterGroup.toLocaleUpperCase(),
+        filterGroup: filterGroup.toLocaleUpperCase(),
       });
 
       setIsLoading(false);
@@ -48,6 +48,8 @@ export function SendImage() {
       setInterval(0);
       setIsLoading(false);
       setFileUpload([]);
+
+      alert("Mensagens enviadas com sucesso");
 
     } catch (error) {
       setMessage("");

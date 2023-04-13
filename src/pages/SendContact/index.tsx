@@ -31,6 +31,7 @@ export function SendContact() {
       setIsLoading(false);
       setData(true);
 
+
       setMessage("");
       setInterval(0);
       setIsLoading(false);
