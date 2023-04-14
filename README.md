@@ -26,5 +26,6 @@
 ## Autor:
  - Lucas Gabryel Monteiro de Lima
  - <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="25px"/> https://www.instagram.com/_lgabryel.m/
- - <img src="https://cdn-icons-png.flaticon.com/512/888/888853.png" width="25px"/> https://www.linkedin.com/in/lucas-gabryel-monteiro-de-lima-75b665195/
- - <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" width="25px"/> lucas.gabdev@gmail.com / gabryelmonteiro1@gmail.com
+ - <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" width="25px"/> https://www.linkedin.com/in/lucas-gabryel-monteiro-de-lima-75b665195/
+ - <img src="https://cdn-icons-png.flaticon.com/512/888/888853.png" width="25px"/> lucas.gabdev@gmail.com / gabryelmonteiro1@gmail.com
+
